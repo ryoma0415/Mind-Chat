@@ -12,6 +12,7 @@
 ## ディレクトリ構成
 ```
 Mind-Chat/
+├── mindchat_launcher.py   # PyInstaller 用のランチャー
 ├── app/
 │   ├── __init__.py
 │   ├── config.py          # パス／LLM設定
@@ -58,6 +59,10 @@ python -m app.main
 - llama-cpp-python は CPU/GPU 構成を自動検出し、`AppConfig` でスレッド数や GPU レイヤ数を調整できます。
 - PyInstaller 等でバンドルする際は `model/` ディレクトリを同梱し、`python -m app.main` と同じエントリポイントを指定してください。
 - ネットワークアクセスは一切不要で、UI からも外部通信は行っていません。
+
+### Windows向けアプリ配布
+- `pyinstaller --onedir` を使って `dist/MindChat` フォルダを作成し、そのフォルダ全体を配布します。ユーザーはフォルダを解凍し `MindChat.exe` をダブルクリックするだけで起動できます。
+- 詳しい手順や注意点は `docs/windows_packaging.md` を参照してください。
 
 ## 次のステップ例
 1. テスト用モック LLM を用意して CI でも UI 以外を検証できるようにする。
